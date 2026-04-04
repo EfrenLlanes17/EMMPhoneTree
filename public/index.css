@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    background-color: black;
+    flex: 1.75;
+}
+
+.content{
+    background-color: #ede9e9;
+    flex: 8.25;
+}
+
+p{
+    color:blue;
+}
