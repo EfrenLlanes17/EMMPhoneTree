@@ -9,7 +9,7 @@ body {
 }
 
 .header{
-    background-color: black;
+    background-color: white;
     flex: 1.75;
 }
 
@@ -18,6 +18,9 @@ body {
     flex: 8.25;
 }
 
-p{
-    color:blue;
+.logo{
+    margin-left: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
