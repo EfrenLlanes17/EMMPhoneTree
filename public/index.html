@@ -22,8 +22,9 @@
       to avoid connecting the SDK to running emulators.
     -->
     <!-- <script defer src="/__/firebase/init.js?useEmulator=true"></script> -->
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="./index.css">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   </head>
   <body>
@@ -35,7 +36,38 @@
 
     </div>
 
-    <div class="content">
+    <div class="container">
+      <div class="content">
+        <h2 class="uplaodtext">Upload CSV Files</h2>
+        <div class="uploadContainer">
+          
+           <div class="upload-group">
+            <h2>Client</h2>
+            <button id="clientUpload" class="upload-btn">
+              <div class="inner">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p id="clientFileName"></p>
+              </div>
+            </button>
+          </div>
+          <input type="file" id="clientFile" accept=".csv,.xlsx" hidden>
+
+          <div class="upload-group">
+            <h2>Volunteer</h2>
+            <button id="volunteerUpload" class="upload-btn">
+              <div class="inner">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p id="volunteerFileName"></p>
+              </div>
+            </button>
+            <input type="file" id="volunteerFile" accept=".csv,.xlsx" hidden>
+          </div>
+
+
+        </div>
+        <button id="generateBtn" class="generateBtn">Generate</button>
+        
+      </div>
 
     </div>
 
