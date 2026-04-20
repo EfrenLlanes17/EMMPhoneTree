@@ -1,27 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment</title>
     <script src="assignment.js" defer></script>
-    <link rel="stylesheet" href="./assignment.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assignment.css" />
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        word-wrap: break-word;
+    max-width: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
     <div class="header">
       <div class="logo">
-        <img src="./images/EMMlogo.png" alt="Edmond Mobile Meals Logo">
+        <img src="./images/EMMlogo.png" alt="Edmond Mobile Meals Logo" />
       </div>
-      
-
     </div>
 
     <div class="container">
-      <p id="volunteer"></p>
-      <p id="clients"></p>
-      
-
+      <table class="">
+        <tbody id="MyTable"></tbody>
+      </table>
     </div>
-    
-</body>
+  </body>
 </html>
