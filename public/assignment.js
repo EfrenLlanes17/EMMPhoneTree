@@ -23,24 +23,58 @@ while(clientData.length != 0) {
     }
 }
 
-function DynamicTable(data){
+function copyCellContent(button) {
+    var cell = button.parentElement;
+    var text = cell.innerText;
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            button.innerText = "Copied!";
+        });
+}
+
+function DynamicTable(data) {
     var table = document.getElementById("MyTable");
+    table.innerHTML = "";
 
-    for(var i = 0; i < data.length; i++) {
-        
-        var row = `
-        <tr>
-            <td>
-                Hello ${data[i].name},
+    for (var i = 0; i < data.length; i += 3) {
+        var row = "<tr>";
 
-                Here are you assigned numbers,
-                ${data[i].clientData.map(client => `${client.name} - ${client.phone}`).join(", ")}
+        for (var j = i; j < i + 3 && j < data.length; j++) {
+            row += `
+                <td style="position: relative; padding: 15px;">
+                    
+                    <button 
+                        onclick="copyCellContent(this)"
+                        style="
+                            position: absolute;
+                            top: 6px;
+                            right: 6px;
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            font-size: 16px;
+                        "
+                    >
+                        <i class="fa-solid fa-copy"></i>
 
-            </td>
-        </tr>
+                    </button>
 
-        `;
-        table.innerHTML += row
+                    Hello ${data[j].name},<br><br>
+                    Here are your assigned numbers,<br><br>
+                    ${data[j].clientData
+                        .map(client => `${client.name} - ${client.phone}`)
+                        .join("<br>")
+                    }
+                    <br><br>
+                    Thank you,<br>
+                    Edmond Mobile Meals
+                </td>
+            `;
+        }
+
+        row += "</tr>";
+        table.innerHTML += row;
     }
 }
 console.log(assignmentData)

@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -11,7 +11,8 @@ body {
 
 .header{
     background-color: white;
-    flex: 1.75;
+    flex: 0 0 auto;
+    height: 105px; 
 }
 
 .container{
@@ -28,4 +29,18 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
+}
+
+table {
+    margin: 20px;
+    width: 100%;
+}
+
+td {
+    border: 3px solid #449ab4;
+    padding: 10px;
+    word-wrap: break-word;
+    max-width: 300px;
+    font-size: 0.7rem;
+    background-color: white;
 }

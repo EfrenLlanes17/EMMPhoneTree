@@ -11,7 +11,8 @@ body {
 
 .header{
     background-color: white;
-    flex: 1.75;
+    flex: 0 0 auto;
+    height: 105px; 
 }
 
 .container{
