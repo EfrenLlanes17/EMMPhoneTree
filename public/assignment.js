@@ -29,7 +29,7 @@ function copyCellContent(button) {
 
     navigator.clipboard.writeText(text)
         .then(() => {
-            button.innerText = "Copied!";
+            button.style.color = "#449ab4";
         });
 }
 
@@ -53,10 +53,10 @@ function DynamicTable(data) {
                             background: none;
                             border: none;
                             cursor: pointer;
-                            font-size: 16px;
+                            font-size: 25px;
                         "
                     >
-                        <i class="fa-solid fa-copy"></i>
+                        <i class="fa-regular fa-copy"></i>
 
                     </button>
 
