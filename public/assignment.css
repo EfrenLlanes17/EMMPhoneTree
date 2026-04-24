@@ -13,6 +13,7 @@ body {
     background-color: white;
     flex: 0 0 auto;
     height: 105px; 
+    color: black;
 }
 
 .container{
@@ -24,12 +25,16 @@ body {
     height: auto;
 }
 
-.logo{
-    margin-left: 20px;
+.logo {
+    padding-left: 20px;
     height: 100%;
     display: flex;
     align-items: center;
+    width: 95%;
+    justify-content: space-between;
 }
+
+
 
 table {
     margin: 20px;
@@ -44,3 +49,18 @@ td {
     font-size: 0.7rem;
     background-color: white;
 }
+
+#templateBox:focus {
+    border: 3px solid #449ab4;
+  }
+.edit-btn {
+    background: none;
+    color: #449ab4;
+    border: none;          
+    border-radius: 0;     
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 10px 16px;
+    cursor: pointer;
+  }

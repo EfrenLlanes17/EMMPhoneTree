@@ -14,14 +14,50 @@
     <div class="header">
       <div class="logo">
         <img src="./images/EMMlogo.png" alt="Edmond Mobile Meals Logo">
+        <button onclick="openTemplateEditor()" class="edit-btn">
+          Edit Email
+        </button>
       </div>
       
+      
     </div>
+
+    
 
     <div class="container">
       <table class="">
         <tbody id="MyTable"></tbody>
       </table>
+    </div>
+
+    <div id="templateModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.2);">
+      <div style="
+          width: 500px;
+          background: white;
+          margin: 10% auto;
+          padding: 30px;
+          border-radius: 10px;
+          position: relative;
+          font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      ">
+
+          <button onclick="saveTemplate()" style="
+              position: absolute;
+              top: 0px;
+              right: 0px;
+              background: none;
+              border: none;
+              font-size: 25px;
+              cursor: pointer;
+          ">
+              ✕
+          </button>
+
+          <textarea id="templateBox" style="width:100%; height:200px; border-radius: 8px; border: 3px solid #449ab4; outline: none;"></textarea>
+
+          <br><br>
+
+      </div>
     </div>
   </body>
 </html>

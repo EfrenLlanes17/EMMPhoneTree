@@ -5,6 +5,31 @@ const assignmentData = []
 // document.getElementById("clients").innerText = JSON.stringify(clientData, null, 2);
 // document.getElementById("volunteer").innerText = JSON.stringify(volunteerData, null, 2);
 
+let currentTemplate = `
+Hello {{name}},<br><br>
+Here are your assigned numbers,<br><br>
+{{clientList}}<br><br>
+Thank you for your help,<br>
+Edmond Mobile Meals
+`;
+
+function openTemplateEditor() {
+    document.getElementById("templateBox").value = currentTemplate;
+    document.getElementById("templateModal").style.display = "block";
+}
+
+// Close popup
+function closeTemplateEditor() {
+    document.getElementById("templateModal").style.display = "none";
+    
+}
+
+function saveTemplate() {
+    currentTemplate = document.getElementById("templateBox").value;
+    DynamicTable(assignmentData, currentTemplate);
+    closeTemplateEditor();
+}
+
 for(var i = 0; i < volunteerData.length; i++) {
     assignmentData.push(
         {name: volunteerData[i].name, clientData: []}
@@ -33,7 +58,17 @@ function copyCellContent(button) {
         });
 }
 
-function DynamicTable(data) {
+function renderTemplate(template, data) {
+    let clientList = data.clientData
+        .map(c => `${c.name} - ${c.phone}`)
+        .join("<br>");
+
+    return template
+        .replaceAll("{{name}}", data.name)
+        .replaceAll("{{clientList}}", clientList);
+}
+
+function DynamicTable(data, template = defaultTemplate) {
     var table = document.getElementById("MyTable");
     table.innerHTML = "";
 
@@ -60,15 +95,7 @@ function DynamicTable(data) {
 
                     </button>
 
-                    Hello ${data[j].name},<br><br>
-                    Here are your assigned numbers,<br><br>
-                    ${data[j].clientData
-                        .map(client => `${client.name} - ${client.phone}`)
-                        .join("<br>")
-                    }
-                    <br><br>
-                    Thank you,<br>
-                    Edmond Mobile Meals
+                    ${renderTemplate(template, data[j])}
                 </td>
             `;
         }
@@ -78,4 +105,4 @@ function DynamicTable(data) {
     }
 }
 console.log(assignmentData)
-DynamicTable(assignmentData);
+DynamicTable(assignmentData, currentTemplate);
