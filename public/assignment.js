@@ -6,6 +6,7 @@ const assignmentData = []
 // document.getElementById("volunteer").innerText = JSON.stringify(volunteerData, null, 2);
 
 let currentTemplate = `
+{{email}}<br>
 Hello {{name}},<br><br>
 Here are your assigned numbers,<br><br>
 {{clientList}}<br><br>
@@ -32,7 +33,7 @@ function saveTemplate() {
 
 for(var i = 0; i < volunteerData.length; i++) {
     assignmentData.push(
-        {name: volunteerData[i].name, clientData: []}
+        {name: volunteerData[i].name, email: volunteerData[i].email, clientData: []}
     )
 }
 
@@ -65,7 +66,8 @@ function renderTemplate(template, data) {
 
     return template
         .replaceAll("{{name}}", data.name)
-        .replaceAll("{{clientList}}", clientList);
+        .replaceAll("{{clientList}}", clientList)
+        .replaceAll("{{email}}",data.email);
 }
 
 function DynamicTable(data, template = defaultTemplate) {

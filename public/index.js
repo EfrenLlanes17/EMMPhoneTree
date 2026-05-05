@@ -29,7 +29,7 @@ clientFileInput.addEventListener("change", () => {
 });
 
 generateBtn.addEventListener("click", () => {
-  if (volunteerFileNameText.textContent != "" && clientFileNameText != "") {
+  if (volunteerFileNameText.textContent != "" && clientFileNameText.textContent != "") {
     const volFile = volunteerFileInput.files[0];
     const clientFile = clientFileInput.files[0];
 
@@ -72,14 +72,60 @@ generateBtn.addEventListener("click", () => {
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
 
+      const normalize = (str) =>
+        str?.toString().toLowerCase().replace(/[\s_]/g, "");
+
+      const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+      const headerKeywords = [
+        "First Name", "FirstName", "first_name", "first",
+        "Last Name", "LastName", "last_name", "last",
+        "Phone1", "Phone 1", "Phone", "phone"
+      ].map(normalize);
+
+      let headerRowIndex = -1;
+
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i].map(normalize);
+
+        const hasMatch = headerKeywords.some((keyword) =>
+          row.some((cell) => cell.includes(keyword))
+        );
+
+        if (hasMatch) {
+          headerRowIndex = i;
+          break;
+        }
+      }
+
+      if (headerRowIndex === -1) {
+        console.error("Could not find header row");
+        return;
+      }
+
       // Header of Client file start at row 6
-      const jsonData = XLSX.utils.sheet_to_json(sheet, { range: 5 });
+      const jsonData = XLSX.utils.sheet_to_json(sheet, {
+        range: headerRowIndex,
+      });
 
       // Convert into structured format (name + email only)
-      const structuredData = jsonData.map((row) => ({
-        name: `${row["First Name"]} ${row["Last Name"]}`,
-        phone: row["Phone1"],
-      }));
+      const getValue = (row, keys) => {
+      for (const key of keys) {
+        if (row[key]) return row[key];
+      }
+      return "";
+    };
+
+    const structuredData = jsonData.map((row) => {
+      const firstName = getValue(row, ["First Name", "FirstName", "first_name", "first"]);
+      const lastName = getValue(row, ["Last Name", "LastName", "last_name", "last"]);
+      const phone = getValue(row, ["Phone1", "Phone 1", "Phone", "phone"]);
+
+      return {
+        name: `${firstName} ${lastName}`.trim(),
+        phone,
+      };
+    });
 
       //removed duplicate phone numbers for couples
       const seenPhones = new Set();
